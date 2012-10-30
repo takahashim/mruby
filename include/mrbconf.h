@@ -11,7 +11,7 @@
 
 /* configuration options: */
 /* add -DMRB_USE_FLOAT to use float instead of double for floating point numbers */
-//#define MRB_USE_FLOAT
+#define MRB_USE_FLOAT
 
 /* represent mrb_value in boxed double; conflict with MRB_USE_FLOAT */
 //#define MRB_NAN_BOXING
@@ -24,15 +24,24 @@
 
 /* number of object per heap page */
 //#define MRB_HEAP_PAGE_SIZE 1024
+#define MRB_HEAP_PAGE_SIZE 128
 
 /* use segmented list for IV table */
-//#define MRB_USE_IV_SEGLIST
+#define MRB_USE_IV_SEGLIST
 
 /* initial size for IV khash; ignored when MRB_USE_IV_SEGLIST is set */
 //#define MRB_IVHASH_INIT_SIZE 8
+#define MRB_IVHASH_INIT_SIZE 4
+
+/* use array for symbol table */
+//#define MRB_USE_SYMBOL_ARRAY
+
+/* size of array for symbol table (if use) */
+//#define MRB_SYMBOL_ARRAY_SIZE 300
 
 /* default size of khash table bucket */
 //#define KHASH_DEFAULT_SIZE 32
+#define KHASH_DEFAULT_SIZE 8
 
 /* allocated memory address alignment */
 //#define POOL_ALIGNMENT 4
@@ -42,10 +51,10 @@
 
 /* -DDISABLE_XXXX to drop the feature */
 #define DISABLE_REGEXP	        /* regular expression classes */
-//#define DISABLE_SPRINTF	/* Kernel.sprintf method */
-//#define DISABLE_MATH		/* Math functions */
-//#define DISABLE_TIME		/* Time class */
-//#define DISABLE_STRUCT	/* Struct class */
+#define DISABLE_SPRINTF	/* Kernel.sprintf method */
+#define DISABLE_MATH		/* Math functions */
+#define DISABLE_TIME		/* Time class */
+#define DISABLE_STRUCT	/* Struct class */
 //#define DISABLE_STDIO		/* use of stdio */
 
 #undef  HAVE_UNISTD_H /* WINDOWS */

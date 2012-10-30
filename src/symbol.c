@@ -17,6 +17,8 @@ typedef struct symbol_name {
   const char *name;
 } symbol_name;
 
+#ifndef MRB_USE_SYMBOL_ARRAY
+
 static inline khint_t
 sym_hash_func(mrb_state *mrb, const symbol_name s)
 {
@@ -33,29 +35,54 @@ sym_hash_func(mrb_state *mrb, const symbol_name s)
 
 KHASH_DECLARE(n2s, symbol_name, mrb_sym, 1)
 KHASH_DEFINE (n2s, symbol_name, mrb_sym, 1, sym_hash_func, sym_hash_equal)
+
+#endif /* MRB_USE_SYMBOL_ARRAY */
+
 /* ------------------------------------------------------ */
 mrb_sym
 mrb_intern2(mrb_state *mrb, const char *name, int len)
 {
-  khash_t(n2s) *h = mrb->name2sym;
-  symbol_name sname;
+#ifdef MRB_USE_SYMBOL_ARRAY
+  mrb_sym i;
+#else
+  khash_t(n2s) *h = (struct kh_n2s *)mrb->name2sym;
   khiter_t k;
+#endif /* MRB_USE_SYMBOL_ARRAY */
+  symbol_name sname;
   mrb_sym sym;
   char *p;
 
+#ifdef MRB_USE_SYMBOL_ARRAY
+  for (i = 0; i < mrb->symidx; i++) {
+    sname = ((symbol_name *)mrb->name2sym)[i];
+    if ((sname.len == len) && (memcmp(sname.name, name, len) == 0)) {
+      return i+1;
+    }
+  }
+  if (mrb->symidx >= MRB_SYMBOL_ARRAY_SIZE) {
+    //faralエラー
+    exit(0);
+  }
+#else
   sname.len = len;
   sname.name = name;
   k = kh_get(n2s, h, sname);
   if (k != kh_end(h))
     return kh_value(h, k);
+#endif /* MRB_USE_SYMBOL_ARRAY */
 
   sym = ++mrb->symidx;
   p = (char *)mrb_malloc(mrb, len+1);
   memcpy(p, name, len);
   p[len] = 0;
   sname.name = (const char*)p;
+#ifdef MRB_USE_SYMBOL_ARRAY
+  sname.len = len;
+  ((symbol_name *)mrb->name2sym)[sym-1] = sname;
+#else
   k = kh_put(n2s, h, sname);
   kh_value(h, k) = sym;
+#endif /* MRB_USE_SYMBOL_ARRAY */
 
   return sym;
 }
@@ -75,9 +102,16 @@ mrb_intern_str(mrb_state *mrb, mrb_value str)
 const char*
 mrb_sym2name_len(mrb_state *mrb, mrb_sym sym, int *lenp)
 {
-  khash_t(n2s) *h = mrb->name2sym;
-  khiter_t k;
   symbol_name sname;
+#ifdef MRB_USE_SYMBOL_ARRAY
+  if (sym > mrb->symidx) {
+     *lenp = 0;
+     return NULL;       /* missing */
+   }
+  sname = ((symbol_name *)mrb->name2sym)[sym-1];
+#else
+  khash_t(n2s) *h = (struct kh_n2s *)mrb->name2sym;
+  khiter_t k;
 
   for (k = kh_begin(h); k != kh_end(h); k++) {
     if (kh_exist(h, k)) {
@@ -89,6 +123,7 @@ mrb_sym2name_len(mrb_state *mrb, mrb_sym sym, int *lenp)
     return NULL;	/* missing */
   }
   sname = kh_key(h, k);
+#endif /* MRB_USE_SYMBOL_ARRAY */
   *lenp = sname.len;
   return sname.name;
 }
@@ -96,18 +131,31 @@ mrb_sym2name_len(mrb_state *mrb, mrb_sym sym, int *lenp)
 void
 mrb_free_symtbl(mrb_state *mrb)
 {
-  khash_t(n2s) *h = mrb->name2sym;
+#ifdef MRB_USE_SYMBOL_ARRAY
+  mrb_sym i;
+  for (i=0; i < mrb->symidx; i++) {
+    mrb_free(mrb, (char*)((symbol_name *)mrb->name2sym)[i].name);
+  }
+  mrb->symidx = 0;
+#else
+  khash_t(n2s) *h = (struct kh_n2s *)mrb->name2sym;
   khiter_t k;
 
   for (k = kh_begin(h); k != kh_end(h); k++)
     if (kh_exist(h, k)) mrb_free(mrb, (char*)kh_key(h, k).name);
   kh_destroy(n2s,mrb->name2sym);
+#endif /* MRB_USE_SYMBOL_ARRAY */
 }
 
 void
 mrb_init_symtbl(mrb_state *mrb)
 {
+  mrb->symidx = 0;
+#ifdef MRB_USE_SYMBOL_ARRAY
+  mrb->name2sym = (symbol_name *)mrb_malloc(mrb, sizeof(symbol_name)*MRB_SYMBOL_ARRAY_SIZE);
+#else
   mrb->name2sym = kh_init(n2s, mrb);
+#endif /* MRB_USE_SYMBOL_ARRAY */
 }
 
 /**********************************************************************

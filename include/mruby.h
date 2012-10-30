@@ -127,7 +127,7 @@ typedef struct mrb_state {
   struct alloca_header *mems;
 
   mrb_sym symidx;
-  struct kh_n2s *name2sym;      /* symbol table */
+  void *name2sym;      /* symbol table */
 #ifdef INCLUDE_REGEXP
   struct RNode *local_svar;/* regexp */
 #endif

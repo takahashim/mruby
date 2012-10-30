@@ -12,6 +12,7 @@ LDEF := $(BASEDIR)/lex.def
 EXCEPT1 := $(YC) $(BASEDIR)/minimain.c
 OBJY := $(patsubst %.c,%.o,$(YC))
 OBJ1 := $(patsubst %.c,%.o,$(filter-out $(EXCEPT1),$(wildcard $(BASEDIR)/*.c)))
+OBJ2 := $(patsubst %.c,%.o,$(wildcard $(BASEDIR)/ext/*/*.c))
 #OBJ2 := $(patsubst %.c,%.o,$(wildcard $(BASEDIR)/ext/regex/*.c))
 #OBJ3 := $(patsubst %.c,%.o,$(wildcard $(BASEDIR)/ext/enc/*.c))
 OBJS := $(OBJ1) $(OBJ2) $(OBJ3)
@@ -33,6 +34,28 @@ else ifeq ($(COMPILE_MODE),small)
 endif
 
 ALL_CFLAGS = -Wall -Werror-implicit-function-declaration $(CFLAGS)
+
+## for FM3
+# define CMSIS LIBRARY PATH
+FWLIB  			= ../libinc/Drivers
+USBLIB 			=
+CMSISLIB 		= ../libinc/CMSIS
+CMSIS_DEVICE 	= $(CMSISLIB)/Device/FUJITSU/MB9BF61xT
+CMSIS_CORE		= $(CMSISLIB)/Include
+
+# include PATH
+INCPATHS	 = 	./							\
+				$(USBLIB)/Core/inc			\
+				$(CMSIS_DEVICE)/Include		\
+				$(CMSIS_CORE)				\
+				$(LIBINCDIRS)
+INCLUDES     := $(INCLUDES) $(addprefix -I ,$(INCPATHS))
+
+## for TOPPERS
+TOPPERSROOT  := ../../asp.fm3
+TOPPERSTARGET  = cq_frk_fm3_gcc
+TOPPERSINCPATHS   := -I $(TOPPERSROOT)/include  -I $(TOPPERSROOT)/target/$(TOPPERSTARGET) -I  $(TOPPERSROOT)/arch
+INCLUDES     := $(INCLUDES) $(TOPPERSINCPATHS)
 
 
 ##############################

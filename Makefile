@@ -1,10 +1,11 @@
-# Makefile description.
+# makefile discription.
 # basic build file for mruby
 
 # compiler, linker (gcc), archiver, parser generator
-export CC = gcc
-export LL = gcc
-export AR = ar
+TARGET_ARC=arm-none-eabi-
+export CC = $(TARGET_ARC)gcc
+export LL = $(TARGET_ARC)gcc
+export AR = $(TARGET_ARC)ar
 export YACC = bison
 
 ifeq ($(strip $(COMPILE_MODE)),)
@@ -13,7 +14,7 @@ ifeq ($(strip $(COMPILE_MODE)),)
 endif
 
 ifeq ($(COMPILE_MODE),debug)
-  CFLAGS = -g -O3
+  CFLAGS = -g -mlittle-endian -mcpu=cortex-m3 -mthumb  -Os -DTOPPERS_LABEL_ASM -DUSE_SYSLOG
 else ifeq ($(COMPILE_MODE),release)
   CFLAGS = -O3
 else ifeq ($(COMPILE_MODE),small)
@@ -44,8 +45,9 @@ export CAT := cat
 all :
 	@$(MAKE) -C src $(MAKE_FLAGS)
 	@$(MAKE) -C mrblib $(MAKE_FLAGS)
-	@$(MAKE) -C tools/mruby $(MAKE_FLAGS)
-	@$(MAKE) -C tools/mirb $(MAKE_FLAGS)
+##	@$(MAKE) -C tools/mruby $(MAKE_FLAGS)
+##	@$(MAKE) -C tools/mirb $(MAKE_FLAGS)
+	@$(MAKE) obj -C samples $(MAKE_FLAGS)
 
 # mruby test
 .PHONY : test
@@ -59,6 +61,7 @@ clean :
 	@$(MAKE) clean -C tools/mruby $(MAKE_FLAGS)
 	@$(MAKE) clean -C tools/mirb $(MAKE_FLAGS)
 	@$(MAKE) clean -C test $(MAKE_FLAGS)
+	@$(MAKE) clean -C samples $(MAKE_FLAGS)
 
 # display help for build configuration and interesting targets
 .PHONY : showconfig

@@ -1,0 +1,551 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 18, 4
+  12              		.thumb
+  13              		.file	"system_mb9bf61x.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.SystemCoreClockUpdate,"ax",%progbits
+  18              		.align	1
+  19              		.global	SystemCoreClockUpdate
+  20              		.thumb
+  21              		.thumb_func
+  23              	SystemCoreClockUpdate:
+  24              	.LFB56:
+  25              		.file 1 "lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c"
+   1:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /************************************************************************/
+   2:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /*               (C) Fujitsu Semiconductor Europe GmbH (FSEU)           */
+   3:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /*                                                                      */
+   4:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* The following software deliverable is intended for and must only be  */
+   5:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* used for reference and in an evaluation laboratory environment.      */
+   6:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* It is provided on an as-is basis without charge and is subject to    */
+   7:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* alterations.                                                         */
+   8:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* It is the user's obligation to fully test the software in its        */
+   9:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* environment and to ensure proper functionality, qualification and    */
+  10:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* compliance with component specifications.                            */
+  11:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /*                                                                      */
+  12:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* In the event the software deliverable includes the use of open       */
+  13:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* source components, the provisions of the governing open source       */
+  14:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* license agreement shall apply with respect to such software          */
+  15:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* deliverable.                                                         */
+  16:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* FSEU does not warrant that the deliverables do not infringe any      */
+  17:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* third party intellectual property right (IPR). In the event that     */
+  18:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* the deliverables infringe a third party IPR it is the sole           */
+  19:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* responsibility of the customer to obtain necessary licenses to       */
+  20:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* continue the usage of the deliverable.                               */
+  21:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /*                                                                      */
+  22:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* To the maximum extent permitted by applicable law FSEU disclaims all */
+  23:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* warranties, whether express or implied, in particular, but not       */
+  24:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* limited to, warranties of merchantability and fitness for a          */
+  25:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* particular purpose for which the deliverable is not designated.      */
+  26:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /*                                                                      */
+  27:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* To the maximum extent permitted by applicable law, FSEU's liability  */
+  28:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* is restricted to intentional misconduct and gross negligence.        */
+  29:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* FSEU is not liable for consequential damages.                        */
+  30:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /*                                                                      */
+  31:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* (V1.5)                                                               */
+  32:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /************************************************************************/
+  33:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+  34:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** #include "mcu.h"
+  35:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+  36:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /** \file system_mb9bf61x.c
+  37:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  **
+  38:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ** FM3 system initialization functions
+  39:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ** All adjustments can be done in belonging header file.
+  40:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  **
+  41:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ** History:
+  42:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ** 2011-07-07 V1.0 MWi original version
+  43:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ******************************************************************************/
+  44:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+  45:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /**
+  46:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ******************************************************************************
+  47:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ** System Clock Frequency (Core Clock) Variable according CMSIS
+  48:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ******************************************************************************/
+  49:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** uint32_t SystemCoreClock = __HCLK;
+  50:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+  51:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /**
+  52:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ******************************************************************************
+  53:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ** \brief  Update the System Core Clock with current core Clock retrieved from
+  54:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ** cpu registers.
+  55:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ** \param  none
+  56:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ** \return none
+  57:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ******************************************************************************/
+  58:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** void SystemCoreClockUpdate (void) {
+  26              		.loc 1 58 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              		@ link register save eliminated.
+  59:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   uint32_t masterClk;
+  60:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   uint32_t u32RegisterRead; // Workaround variable for MISRA C rule conformance
+  61:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+  62:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   switch ((FM3_CRG->SCM_CTL >> 5) & 0x07) {
+  31              		.loc 1 62 0
+  32 0000 204A     		ldr	r2, .L23
+  33 0002 1378     		ldrb	r3, [r2, #0]	@ zero_extendqisi2
+  34 0004 5B09     		lsrs	r3, r3, #5
+  35 0006 052B     		cmp	r3, #5
+  36 0008 1BD8     		bhi	.L2
+  37 000a DFE803F0 		tbb	[pc, r3]
+  38              	.L7:
+  39 000e 03       		.byte	(.L3-.L7)/2
+  40 000f 03       		.byte	(.L3-.L7)/2
+  41 0010 05       		.byte	(.L4-.L7)/2
+  42 0011 1A       		.byte	(.L2-.L7)/2
+  43 0012 1C       		.byte	(.L20-.L7)/2
+  44 0013 17       		.byte	(.L6-.L7)/2
+  45              		.align	1
+  46              	.L3:
+  63:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     case 0:                                 /* internal High-speed Cr osc.    */
+  64:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       masterClk = __CLKHC;
+  47              		.loc 1 64 0
+  48 0014 1C4B     		ldr	r3, .L23+4
+  49 0016 17E0     		b	.L5
+  50              	.L4:
+  65:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+  66:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+  67:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     case 1:                                 /* external main osc.             */
+  68:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       masterClk = __CLKMO;
+  69:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+  70:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+  71:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     case 2:                                 /* PLL clock                      */
+  72:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   // Workaround for preventing MISRA C:1998 Rule 46 (MISRA C:2004 Rule 12.2)
+  73:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   // violation:
+  74:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   //   "Unordered accesses to a volatile location"
+  75:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 	/* masterClk = (Input Freq.)/K * N (M=don't care)　　　　　　　　　　　　　 */
+  76:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 	/* Input Freq. select : PSW_TMR Bit#4:PINC = (0=CLKMO,1=(diabled) ) */
+  77:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 	/* K : PLL_CTL1 Bit#7-4 : PLLK[3:0] mask bit = 0x0F, shift = 4　　　　　*/
+  78:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 	/* N : PLL_CTL2 Bit#5-0 : PLLM[5:0] mask bit = 0x3F, shift = 0 　　　　*/
+  79:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 	/* Fixed by Kenji Arai thanks! */
+  80:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 	if (((FM3_CRG->PSW_TMR) & 0x10) == 0) {
+  51              		.loc 1 80 0
+  52 0018 1A4B     		ldr	r3, .L23
+  53 001a 92F83420 		ldrb	r2, [r2, #52]	@ zero_extendqisi2
+  54 001e 1A49     		ldr	r1, .L23+4
+  81:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 		u32RegisterRead = (__CLKMO * (((FM3_CRG->PLL_CTL2) & 0x3F) + 1));
+  55              		.loc 1 81 0
+  56 0020 93F83C20 		ldrb	r2, [r3, #60]	@ zero_extendqisi2
+  57 0024 02F03F02 		and	r2, r2, #63
+  58 0028 0132     		adds	r2, r2, #1
+  59 002a 4A43     		muls	r2, r1, r2
+  60              	.LVL0:
+  82:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 	} else {
+  83:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 		u32RegisterRead = (__CLKHC * (((FM3_CRG->PLL_CTL2) & 0x3F) + 1));
+  84:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 		}
+  85:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       masterClk = (u32RegisterRead / (((FM3_CRG->PLL_CTL1 >> 4) & 0x0F) + 1));
+  61              		.loc 1 85 0
+  62 002c 154B     		ldr	r3, .L23
+  63 002e 93F83830 		ldrb	r3, [r3, #56]	@ zero_extendqisi2
+  64 0032 1B09     		lsrs	r3, r3, #4
+  65 0034 0133     		adds	r3, r3, #1
+  66 0036 B2FBF3F3 		udiv	r3, r2, r3
+  67              	.LVL1:
+  86:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+  68              		.loc 1 86 0
+  69 003a 05E0     		b	.L5
+  70              	.LVL2:
+  71              	.L6:
+  87:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+  88:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     case 4:                                 /* internal Low-speed CR osc.     */
+  89:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       masterClk = __CLKLC;
+  90:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+  91:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+  92:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     case 5:                                 /* external Sub osc.              */
+  93:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       masterClk = __CLKSO;
+  72              		.loc 1 93 0
+  73 003c 4FF40043 		mov	r3, #32768
+  94:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+  74              		.loc 1 94 0
+  75 0040 02E0     		b	.L5
+  76              	.LVL3:
+  77              	.L2:
+  95:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+  96:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     default:
+  97:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       masterClk = 0Ul;
+  78              		.loc 1 97 0
+  79 0042 0023     		movs	r3, #0
+  98:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+  80              		.loc 1 98 0
+  81 0044 00E0     		b	.L5
+  82              	.LVL4:
+  83              	.L20:
+  89:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       masterClk = __CLKLC;
+  84              		.loc 1 89 0
+  85 0046 114B     		ldr	r3, .L23+8
+  86              	.L5:
+  87              	.LVL5:
+  99:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   }
+ 100:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 101:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   switch (FM3_CRG->BSC_PSR & 0x07) {
+  88              		.loc 1 101 0
+  89 0048 0E4A     		ldr	r2, .L23
+  90 004a 117C     		ldrb	r1, [r2, #16]	@ zero_extendqisi2
+  91 004c 01F00701 		and	r1, r1, #7
+  92 0050 0F4A     		ldr	r2, .L23+12
+  93 0052 0629     		cmp	r1, #6
+  94 0054 13D8     		bhi	.L10
+  95 0056 DFE801F0 		tbb	[pc, r1]
+  96              	.L18:
+  97 005a 13       		.byte	(.L21-.L18)/2
+  98 005b 04       		.byte	(.L12-.L18)/2
+  99 005c 06       		.byte	(.L13-.L18)/2
+ 100 005d 08       		.byte	(.L14-.L18)/2
+ 101 005e 0A       		.byte	(.L15-.L18)/2
+ 102 005f 0E       		.byte	(.L16-.L18)/2
+ 103 0060 10       		.byte	(.L17-.L18)/2
+ 104 0061 00       		.align	1
+ 105              	.L12:
+ 102:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     case 0:
+ 103:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       SystemCoreClock = masterClk;
+ 104:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+ 105:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 106:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     case 1:
+ 107:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       SystemCoreClock = masterClk / 2;
+ 106              		.loc 1 107 0
+ 107 0062 5B08     		lsrs	r3, r3, #1
+ 108              	.LVL6:
+ 109 0064 0CE0     		b	.L21
+ 110              	.LVL7:
+ 111              	.L13:
+ 108:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+ 109:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 110:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     case 2:
+ 111:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       SystemCoreClock = masterClk / 3;
+ 112              		.loc 1 111 0
+ 113 0066 0321     		movs	r1, #3
+ 114 0068 02E0     		b	.L22
+ 115              	.L14:
+ 112:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+ 113:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 114:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     case 3:
+ 115:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       SystemCoreClock = masterClk / 4;
+ 116              		.loc 1 115 0
+ 117 006a 9B08     		lsrs	r3, r3, #2
+ 118              	.LVL8:
+ 119 006c 08E0     		b	.L21
+ 120              	.LVL9:
+ 121              	.L15:
+ 116:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+ 117:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 118:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     case 4:
+ 119:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       SystemCoreClock = masterClk / 6;
+ 122              		.loc 1 119 0
+ 123 006e 0621     		movs	r1, #6
+ 124              	.L22:
+ 125 0070 B3FBF1F3 		udiv	r3, r3, r1
+ 126              	.LVL10:
+ 127 0074 04E0     		b	.L21
+ 128              	.LVL11:
+ 129              	.L16:
+ 120:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+ 121:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 122:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     case 5:
+ 123:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       SystemCoreClock = masterClk /8;
+ 130              		.loc 1 123 0
+ 131 0076 DB08     		lsrs	r3, r3, #3
+ 132              	.LVL12:
+ 133 0078 02E0     		b	.L21
+ 134              	.LVL13:
+ 135              	.L17:
+ 124:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+ 125:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 126:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     case 6:
+ 127:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       SystemCoreClock = masterClk /16;
+ 136              		.loc 1 127 0
+ 137 007a 1B09     		lsrs	r3, r3, #4
+ 138              	.LVL14:
+ 139 007c 00E0     		b	.L21
+ 140              	.LVL15:
+ 141              	.L10:
+ 128:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+ 129:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 130:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     default:
+ 131:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       SystemCoreClock = 0Ul;
+ 142              		.loc 1 131 0
+ 143 007e 0023     		movs	r3, #0
+ 144              	.LVL16:
+ 145              	.L21:
+ 146 0080 1360     		str	r3, [r2, #0]
+ 147 0082 7047     		bx	lr
+ 148              	.L24:
+ 149              		.align	2
+ 150              	.L23:
+ 151 0084 00000140 		.word	1073807360
+ 152 0088 00093D00 		.word	4000000
+ 153 008c A0860100 		.word	100000
+ 154 0090 00000000 		.word	.LANCHOR0
+ 155              		.cfi_endproc
+ 156              	.LFE56:
+ 158              		.section	.text.SystemInit,"ax",%progbits
+ 159              		.align	1
+ 160              		.global	SystemInit
+ 161              		.thumb
+ 162              		.thumb_func
+ 164              	SystemInit:
+ 165              	.LFB57:
+ 132:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****       break;
+ 133:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   }
+ 134:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 135:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** }
+ 136:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 137:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /**
+ 138:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ******************************************************************************
+ 139:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ** \brief  Setup the microcontroller system. Initialize the System and update
+ 140:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ** the SystemCoreClock variable.
+ 141:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  **
+ 142:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ** \param  none
+ 143:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ** \return none
+ 144:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****  ******************************************************************************/
+ 145:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** void SystemInit (void) {
+ 166              		.loc 1 145 0
+ 167              		.cfi_startproc
+ 168              		@ args = 0, pretend = 0, frame = 0
+ 169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 170 0000 10B5     		push	{r4, lr}
+ 171              	.LCFI0:
+ 172              		.cfi_def_cfa_offset 8
+ 173              		.cfi_offset 14, -4
+ 174              		.cfi_offset 4, -8
+ 146:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 147:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   static uint32_t u32IoRegisterRead;  // Workaround variable for MISRA C rule conformance
+ 148:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   
+ 149:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** #if (HWWD_DISABLE)                                 /* HW Watchdog Disable */
+ 150:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_HWWDT->WDG_LCK = 0x1ACCE551;                 /* HW Watchdog Unlock */
+ 175              		.loc 1 150 0
+ 176 0002 314B     		ldr	r3, .L35
+ 177 0004 314A     		ldr	r2, .L35+4
+ 178 0006 C3F8002C 		str	r2, [r3, #3072]
+ 151:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_HWWDT->WDG_LCK = 0xE5331AAE;
+ 179              		.loc 1 151 0
+ 180 000a 314A     		ldr	r2, .L35+8
+ 181 000c C3F8002C 		str	r2, [r3, #3072]
+ 152:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_HWWDT->WDG_CTL = 0;                          /* HW Watchdog stop */
+ 182              		.loc 1 152 0
+ 183 0010 0022     		movs	r2, #0
+ 184 0012 1A72     		strb	r2, [r3, #8]
+ 153:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** #endif
+ 154:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 155:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** #if (CLOCK_SETUP)                                   /* Clock Setup */
+ 156:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_CRG->BSC_PSR   = BSC_PSR_Val;                /* set System Clock presacaler */
+ 185              		.loc 1 156 0
+ 186 0014 A3F58053 		sub	r3, r3, #4096
+ 187 0018 1A74     		strb	r2, [r3, #16]
+ 157:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_CRG->APBC0_PSR = APBC0_PSR_Val;              /* set APB0 presacaler */
+ 188              		.loc 1 157 0
+ 189 001a 0121     		movs	r1, #1
+ 190 001c 1975     		strb	r1, [r3, #20]
+ 158:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_CRG->APBC1_PSR = APBC1_PSR_Val;              /* set APB1 presacaler */
+ 191              		.loc 1 158 0
+ 192 001e 8121     		movs	r1, #129
+ 193 0020 1976     		strb	r1, [r3, #24]
+ 159:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_CRG->APBC2_PSR = APBC2_PSR_Val;              /* set APB2 presacaler */
+ 194              		.loc 1 159 0
+ 195 0022 1977     		strb	r1, [r3, #28]
+ 160:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_CRG->SWC_PSR   = SWC_PSR_Val | (1UL << 7);   /* set SW Watchdog presacaler */
+ 196              		.loc 1 160 0
+ 197 0024 8321     		movs	r1, #131
+ 198 0026 83F82010 		strb	r1, [r3, #32]
+ 161:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_CRG->TTC_PSR   = TTC_PSR_Val;                /* set Trace Clock presacaler */
+ 199              		.loc 1 161 0
+ 200 002a 83F82820 		strb	r2, [r3, #40]
+ 162:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 163:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_CRG->CSW_TMR   = CSW_TMR_Val;                /* set oscillation stabilization wait time */
+ 201              		.loc 1 163 0
+ 202 002e 5C22     		movs	r2, #92
+ 203 0030 83F83020 		strb	r2, [r3, #48]
+ 164:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   
+ 165:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   if (SCM_CTL_Val & (1UL << 1)) {                    /* Main clock oscillator enabled ? */
+ 166:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     FM3_CRG->SCM_CTL |= (1UL << 1);                /* enable main oscillator */ 
+ 204              		.loc 1 166 0
+ 205 0034 1A78     		ldrb	r2, [r3, #0]	@ zero_extendqisi2
+ 206 0036 42F00202 		orr	r2, r2, #2
+ 207 003a 1A70     		strb	r2, [r3, #0]
+ 208              	.L26:
+ 167:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     while (!(FM3_CRG->SCM_STR & (1UL << 1)));      /* wait for Main clock oscillation stable */
+ 209              		.loc 1 167 0 discriminator 1
+ 210 003c 254A     		ldr	r2, .L35+12
+ 211 003e 1979     		ldrb	r1, [r3, #4]	@ zero_extendqisi2
+ 212 0040 8807     		lsls	r0, r1, #30
+ 213 0042 FBD5     		bpl	.L26
+ 168:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   }
+ 169:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   
+ 170:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   if (SCM_CTL_Val & (1UL << 3)) {                    /* Sub clock oscillator enabled ? */
+ 171:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     FM3_CRG->SCM_CTL |= (1UL << 3);                /* enable sub oscillator */ 
+ 172:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     while (!(FM3_CRG->SCM_STR & (1UL << 3)));      /* wait for Sub clock oscillation stable */
+ 173:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   }
+ 174:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 175:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_CRG->PSW_TMR   = PSW_TMR_Val;                /* set PLL stabilization wait time */
+ 214              		.loc 1 175 0
+ 215 0044 0023     		movs	r3, #0
+ 216 0046 82F83430 		strb	r3, [r2, #52]
+ 176:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_CRG->PLL_CTL1  = PLL_CTL1_Val;               /* set PLLM and PLLK */
+ 217              		.loc 1 176 0
+ 218 004a 0123     		movs	r3, #1
+ 219 004c 82F83830 		strb	r3, [r2, #56]
+ 177:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_CRG->PLL_CTL2  = PLL_CTL2_Val;               /* set PLLN          */
+ 220              		.loc 1 177 0
+ 221 0050 2323     		movs	r3, #35
+ 222 0052 82F83C30 		strb	r3, [r2, #60]
+ 178:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   
+ 179:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   if (SCM_CTL_Val & (1UL << 4)) {                    /* PLL enabled ? */
+ 180:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     FM3_CRG->SCM_CTL  |= (1UL << 4);               /* enable PLL */ 
+ 223              		.loc 1 180 0
+ 224 0056 1378     		ldrb	r3, [r2, #0]	@ zero_extendqisi2
+ 225 0058 43F01003 		orr	r3, r3, #16
+ 226 005c 1370     		strb	r3, [r2, #0]
+ 227              	.L27:
+ 181:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     while (!(FM3_CRG->SCM_STR & (1UL << 4)));      /* wait for PLL stable */
+ 228              		.loc 1 181 0 discriminator 1
+ 229 005e 1D4B     		ldr	r3, .L35+12
+ 230 0060 1179     		ldrb	r1, [r2, #4]	@ zero_extendqisi2
+ 231 0062 C906     		lsls	r1, r1, #27
+ 232 0064 FBD5     		bpl	.L27
+ 182:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   }
+ 183:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 184:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_CRG->SCM_CTL  |= (SCM_CTL_Val & 0xE0);       /* Set Master Clock switch */ 
+ 233              		.loc 1 184 0
+ 234 0066 1A78     		ldrb	r2, [r3, #0]	@ zero_extendqisi2
+ 235 0068 42F04002 		orr	r2, r2, #64
+ 236 006c 1A70     		strb	r2, [r3, #0]
+ 185:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   
+ 186:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   // Workaround for preventing MISRA C:1998 Rule 46 (MISRA C:2004 Rule 12.2)
+ 187:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   // violations:
+ 188:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   //   "Unordered reads and writes to or from same location" and
+ 189:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   //   "Unordered accesses to a volatile location"
+ 190:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   do                                              
+ 191:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   {                                               
+ 192:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     u32IoRegisterRead = (FM3_CRG->SCM_CTL & 0xE0); 
+ 237              		.loc 1 192 0
+ 238 006e 1A49     		ldr	r1, .L35+16
+ 239              	.L28:
+ 240              		.loc 1 192 0 is_stmt 0 discriminator 1
+ 241 0070 1A78     		ldrb	r2, [r3, #0]	@ zero_extendqisi2
+ 242 0072 02F0E002 		and	r2, r2, #224
+ 243 0076 0A60     		str	r2, [r1, #0]
+ 193:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   }while ((FM3_CRG->SCM_STR & 0xE0) != u32IoRegisterRead);
+ 244              		.loc 1 193 0 is_stmt 1 discriminator 1
+ 245 0078 1879     		ldrb	r0, [r3, #4]	@ zero_extendqisi2
+ 246 007a 00F0E000 		and	r0, r0, #224
+ 247 007e 9042     		cmp	r0, r2
+ 248 0080 F6D1     		bne	.L28
+ 194:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   
+ 195:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* Nemui Added */
+ 196:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** #if (__HCLK > 72000000UL)
+ 197:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   FM3_FLASH_IF->FBFCR = 0x01;						       /* Enable Trace Buffer */ 
+ 249              		.loc 1 197 0
+ 250 0082 4FF08043 		mov	r3, #1073741824
+ 251 0086 0122     		movs	r2, #1
+ 252 0088 5A61     		str	r2, [r3, #20]
+ 198:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   do                                              
+ 199:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   {                                               
+ 200:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     u32IoRegisterRead = (FM3_FLASH_IF->FBFCR & 0x02);      /* Wait until Stable */ 
+ 253              		.loc 1 200 0
+ 254 008a 1846     		mov	r0, r3
+ 201:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   }while ((FM3_CRG->SCM_STR & 0x02) != u32IoRegisterRead);
+ 255              		.loc 1 201 0
+ 256 008c 1149     		ldr	r1, .L35+12
+ 257              	.L29:
+ 200:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     u32IoRegisterRead = (FM3_FLASH_IF->FBFCR & 0x02);      /* Wait until Stable */ 
+ 258              		.loc 1 200 0 discriminator 1
+ 259 008e 4FF08042 		mov	r2, #1073741824
+ 260 0092 4469     		ldr	r4, [r0, #20]
+ 261 0094 04F00204 		and	r4, r4, #2
+ 262              		.loc 1 201 0 discriminator 1
+ 263 0098 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 264 009a 03F00203 		and	r3, r3, #2
+ 265 009e A342     		cmp	r3, r4
+ 266 00a0 F5D1     		bne	.L29
+ 267              		.loc 1 201 0 is_stmt 0
+ 268 00a2 0D49     		ldr	r1, .L35+16
+ 269 00a4 0B60     		str	r3, [r1, #0]
+ 202:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** #endif
+ 203:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** /* Nemui Added */
+ 204:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** 
+ 205:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** #endif // (CLOCK_SETUP)
+ 206:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   
+ 207:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c **** #if (CR_TRIM_SETUP)
+ 208:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   /* CR Trimming Data  */
+ 209:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   if( 0x000003FF != (FM3_FLASH_IF->CRTRMM & 0x000003FF) )
+ 270              		.loc 1 209 0 is_stmt 1
+ 271 00a6 D2F80031 		ldr	r3, [r2, #256]
+ 272 00aa 9B05     		lsls	r3, r3, #22
+ 273 00ac 13F5800F 		cmn	r3, #4194304
+ 274 00b0 08D0     		beq	.L25
+ 210:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****   {
+ 211:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     /* UnLock (MCR_FTRM) */
+ 212:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     FM3_CRTRIM->MCR_RLR = 0x1ACCE554;
+ 275              		.loc 1 212 0
+ 276 00b2 0A4B     		ldr	r3, .L35+20
+ 277 00b4 0A49     		ldr	r1, .L35+24
+ 278 00b6 D960     		str	r1, [r3, #12]
+ 213:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     /* Set MCR_FTRM */
+ 214:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     FM3_CRTRIM->MCR_FTRM = FM3_FLASH_IF->CRTRMM;
+ 279              		.loc 1 214 0
+ 280 00b8 D2F80021 		ldr	r2, [r2, #256]
+ 281 00bc 92B2     		uxth	r2, r2
+ 282 00be 9A80     		strh	r2, [r3, #4]	@ movhi
+ 215:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     /* Lock (MCR_FTRM) */
+ 216:lib/CMSIS/Device/FUJITSU/MB9BF61xT/Source/Templates/system_mb9bf61x.c ****     FM3_CRTRIM->MCR_RLR = 0x00000000;
+ 283              		.loc 1 216 0
+ 284 00c0 0022     		movs	r2, #0
+ 285 00c2 DA60     		str	r2, [r3, #12]
+ 286              	.L25:
+ 287 00c4 10BD     		pop	{r4, pc}
+ 288              	.L36:
+ 289 00c6 00BF     		.align	2
+ 290              	.L35:
+ 291 00c8 00100140 		.word	1073811456
+ 292 00cc 51E5CC1A 		.word	449635665
+ 293 00d0 AE1A33E5 		.word	-449635666
+ 294 00d4 00000140 		.word	1073807360
+ 295 00d8 00000000 		.word	.LANCHOR1
+ 296 00dc 00E00240 		.word	1073930240
+ 297 00e0 54E5CC1A 		.word	449635668
+ 298              		.cfi_endproc
+ 299              	.LFE57:
+ 301              		.global	SystemCoreClock
+ 302              		.section	.bss.u32IoRegisterRead.13900,"aw",%nobits
+ 303              		.align	2
+ 304              		.set	.LANCHOR1,. + 0
+ 307              	u32IoRegisterRead.13900:
+ 308 0000 00000000 		.space	4
+ 309              		.section	.data.SystemCoreClock,"aw",%progbits
+ 310              		.align	2
+ 311              		.set	.LANCHOR0,. + 0
+ 314              	SystemCoreClock:
+ 315 0000 00449508 		.word	144000000
+ 316              		.text
+ 317              	.Letext0:
+ 318              		.file 2 "/Users/maki/yagarto/yagarto-4.6.2/bin/../lib/gcc/arm-none-eabi/4.6.2/include/stdint-gcc.h
+ 319              		.file 3 "./lib/CMSIS/Device/FUJITSU/MB9BF61xT/Include/mb9b610t.h"
+ 320              		.file 4 "./lib/CMSIS/Include/core_cm3.h"
+ 321              		.file 5 "./lib/CMSIS/Device/FUJITSU/MB9BF61xT/Include/system_mb9bf61x.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 system_mb9bf61x.c
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:18     .text.SystemCoreClockUpdate:00000000 $t
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:23     .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:39     .text.SystemCoreClockUpdate:0000000e $d
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:45     .text.SystemCoreClockUpdate:00000014 $t
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:97     .text.SystemCoreClockUpdate:0000005a $d
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:151    .text.SystemCoreClockUpdate:00000084 $d
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:159    .text.SystemInit:00000000 $t
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:164    .text.SystemInit:00000000 SystemInit
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:291    .text.SystemInit:000000c8 $d
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:314    .data.SystemCoreClock:00000000 SystemCoreClock
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:303    .bss.u32IoRegisterRead.13900:00000000 $d
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:307    .bss.u32IoRegisterRead.13900:00000000 u32IoRegisterRead.13900
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:310    .data.SystemCoreClock:00000000 $d
+                     .debug_frame:00000010 $d
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:104    .text.SystemCoreClockUpdate:00000061 $d
+/var/folders/eB/eB+DBuHjF2SaQejGnbN5NU+++TI/-Tmp-//cc3QEGXq.s:104    .text.SystemCoreClockUpdate:00000062 $t
+
+NO UNDEFINED SYMBOLS

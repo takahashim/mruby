@@ -21,6 +21,10 @@
 #include <limits.h> // for SIZE_MAX
 #endif
 
+#ifdef USE_SYSLOG
+extern void syslog(int prio, const char *format, ...);
+#endif
+
 /*
   = Tri-color Incremental Garbage Collection
 
@@ -153,7 +157,16 @@ mrb_realloc(mrb_state *mrb, void *p, size_t len)
 {
   void *p2;
 
+  static size_t mem_sum = 0;
+
   p2 = (mrb->allocf)(mrb, p, len, mrb->ud);
+
+  mem_sum += len;
+#ifdef USE_SYSLOG
+  syslog(4, "MALLOC %08x %8d %8d\n",p2,len,mem_sum);
+#else
+  printf("MALLOC %08x %8d %8d\n",p2,len,mem_sum);
+#endif /* USE_SYSLOG  */
 
   if (!p2 && len > 0 && mrb->heaps) {
     mrb_garbage_collect(mrb);

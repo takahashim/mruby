@@ -21,6 +21,7 @@
 
 /* argv max size in mrb_funcall */
 //#define MRB_FUNCALL_ARGC_MAX 16 
+#define MRB_FUNCALL_ARGC_MAX 5
 
 /* number of object per heap page */
 //#define MRB_HEAP_PAGE_SIZE 1024
@@ -31,23 +32,25 @@
 
 /* initial size for IV khash; ignored when MRB_USE_IV_SEGLIST is set */
 //#define MRB_IVHASH_INIT_SIZE 8
-#define MRB_IVHASH_INIT_SIZE 4
+#define MRB_IVHASH_INIT_SIZE 3
 
 /* use array for symbol table */
-//#define MRB_USE_SYMBOL_ARRAY
+#define MRB_USE_SYMBOL_ARRAY
 
 /* size of array for symbol table (if use) */
-//#define MRB_SYMBOL_ARRAY_SIZE 300
+#define MRB_SYMBOL_ARRAY_SIZE 300
 
 /* default size of khash table bucket */
 //#define KHASH_DEFAULT_SIZE 32
-#define KHASH_DEFAULT_SIZE 8
+//#define KHASH_DEFAULT_SIZE 8
+#define KHASH_DEFAULT_SIZE 4
 
 /* allocated memory address alignment */
-//#define POOL_ALIGNMENT 4
+#define POOL_ALIGNMENT 4
 
 /* page size of memory pool */
 //#define POOL_PAGE_SIZE 16000
+#define POOL_PAGE_SIZE 400
 
 /* -DDISABLE_XXXX to drop the feature */
 #define DISABLE_REGEXP	        /* regular expression classes */

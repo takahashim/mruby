@@ -81,7 +81,8 @@ struct mrb_parser_state {
   mrb_ast_node *locals;
 
   mrb_ast_node *pb;
-  char buf[1024];
+  //char buf[1024];
+  char buf[128];
   int bidx;
 
   mrb_ast_node *heredoc;

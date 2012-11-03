@@ -163,7 +163,7 @@ mrb_realloc(mrb_state *mrb, void *p, size_t len)
 
   mem_sum += len;
 #ifdef USE_SYSLOG
-  syslog(4, "MALLOC %08x %8d %8d\n",p2,len,mem_sum);
+  //  syslog(4, "MALLOC %08x %8d %8d\n",p2,len,mem_sum);
 #else
   printf("MALLOC %08x %8d %8d\n",p2,len,mem_sum);
 #endif /* USE_SYSLOG  */

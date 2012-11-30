@@ -1,13 +1,16 @@
 #include "mruby.h"
-#include "hw_config.h"
-
+#include "fm3_mb9bxxx.h"
 
 static mrb_value
 led_led(mrb_state *mrb, mrb_value obj)
 {
   int n;
   mrb_get_args(mrb, "i", &n);
-  FM3_GPIO->PDORF_f.P3 = n;
+  if (n==0) {
+    *(volatile uint32_t *)FM3_GPIO_PDORF &= ~(1<<3);
+  } else if (n == 1) {
+    *(volatile uint32_t *)FM3_GPIO_PDORF |= (1<<3);
+  }
 
   return mrb_fixnum_value(n);
 }

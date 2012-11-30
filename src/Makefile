@@ -35,26 +35,11 @@ endif
 
 ALL_CFLAGS = -Wall -Werror-implicit-function-declaration $(CFLAGS)
 
-## for FM3
-# define CMSIS LIBRARY PATH
-FWLIB  			= ../libinc/Drivers
-USBLIB 			=
-CMSISLIB 		= ../libinc/CMSIS
-CMSIS_DEVICE 	= $(CMSISLIB)/Device/FUJITSU/MB9BF61xT
-CMSIS_CORE		= $(CMSISLIB)/Include
-
-# include PATH
-INCPATHS	 = 	./							\
-				$(USBLIB)/Core/inc			\
-				$(CMSIS_DEVICE)/Include		\
-				$(CMSIS_CORE)				\
-				$(LIBINCDIRS)
-INCLUDES     := $(INCLUDES) $(addprefix -I ,$(INCPATHS))
-
 ## for TOPPERS
-TOPPERSROOT  := ../../asp.fm3
+TOPPERSROOT  := ../../asp
 TOPPERSTARGET  = cq_frk_fm3_gcc
-TOPPERSINCPATHS   := -I $(TOPPERSROOT)/include  -I $(TOPPERSROOT)/target/$(TOPPERSTARGET) -I  $(TOPPERSROOT)/arch
+TOPPERSARCH  = arm_m_gcc/common
+TOPPERSINCPATHS   := -I $(TOPPERSROOT)/include  -I $(TOPPERSROOT)/target/$(TOPPERSTARGET) -I  $(TOPPERSROOT)/arch -I $(TOPPERSROOT)/arch/$(TOPPERSARCH)
 INCLUDES     := $(INCLUDES) $(TOPPERSINCPATHS)
 
 

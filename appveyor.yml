@@ -1,0 +1,19 @@
+---
+version: "#{build}"
+environment:
+  VisualStudioVersion: "12.0"
+  matrix:
+    - MRUBY_CONFIG: "appveyor_mingw_config.rb"
+    - MRUBY_CONFIG: "build_config.rb"
+
+init:
+  - call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" %platform%
+
+install:
+  - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
+  - set PATH=%PATH%;C:\MinGW\bin;C:\MinGW\msys\1.0\bin
+  - ruby --version
+  - gem --version
+  - gem install rake
+build_script:
+  - rake test --trace --verbose
